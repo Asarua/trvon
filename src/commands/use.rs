@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use super::Commander;
 use crate::{
-  constants::{RNMRC_PATH, NPMRC},
+  constants::{NPMRC, RNMRC_PATH},
   helper::{get_current_registry, get_full_registries, is_have_registry, read_file_from_home},
 };
 use anyhow::Result;

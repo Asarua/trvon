@@ -1,5 +1,5 @@
 use super::Commander;
-use crate::helper::get_full_registries;
+use crate::helper::{get_current_registry, get_full_registries};
 use anyhow::Result;
 use clap::Parser;
 use thiserror::Error;
@@ -18,11 +18,17 @@ impl Commander for Ls {
       .max()
       .unwrap_or(0)
       + 4;
+    let current_registry = get_current_registry().unwrap();
 
     println!("");
     registries.iter().for_each(|registry| {
       println!(
-        "  {} {} {}",
+        " {} {} {} {}",
+        if current_registry.lowercase_equal(&registry.name, None) {
+          "*"
+        } else {
+          ""
+        },
         registry.name,
         "-".repeat(max_length - registry.name.chars().count()),
         registry.registry

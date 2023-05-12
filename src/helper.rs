@@ -1,5 +1,5 @@
 use crate::{
-  constants::{DEFAULT_REGISTRIES, RNMRC, RNMRC_PATH, NPMRC},
+  constants::{DEFAULT_REGISTRIES, NPMRC, RNMRC, RNMRC_PATH},
   registry::Registry,
 };
 use anyhow::Result;
