@@ -1,6 +1,6 @@
 {
   "name": "trvon",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "TRVON -- The rust version of [nrm](https://github.com/Pana/nrm)",
   "main": "index.js",
   "scripts": {
