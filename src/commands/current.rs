@@ -31,12 +31,12 @@ impl Commander for Current {
       )
     } else {
       println!(
-        "Your current registry({}) is not included in the rnm registries.",
+        "Your current registry({}) is not included in the trvon registries.",
         current_registry.registry.blue()
       );
       println!(
         "Use the {} command to add your registry.",
-        "rnm add <registry> <url> [home]".green()
+        "trvon add <registry> <url> [home]".green()
       )
     }
     Ok(())

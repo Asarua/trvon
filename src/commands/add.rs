@@ -1,5 +1,5 @@
 use crate::{
-  constants::RNMRC_PATH,
+  constants::TRVONRC_PATH,
   helper::{
     get_custom_registries_from_config, get_full_registries, print_success, write_custom_registries,
   },
@@ -32,13 +32,13 @@ impl Commander for Add {
     } else {
       let mut custom_registries = get_custom_registries_from_config().unwrap_or_default();
       custom_registries.push(Registry::from(self.clone()));
-      if let Err(_) = write_custom_registries(&custom_registries, Some(RNMRC_PATH.as_path())) {
+      if let Err(_) = write_custom_registries(&custom_registries, Some(TRVONRC_PATH.as_path())) {
         return Err(AddError::WriteCustomRegistriesError);
       } else {
         print_success(format!(
           "Add registry {} success, run {} command to use {} registry.",
           self.name,
-          format!("{}", format!("rnm use {}", self.name).green()),
+          format!("{}", format!("trvon use {}", self.name).green()),
           self.name
         ))
       }

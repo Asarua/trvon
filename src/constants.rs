@@ -5,10 +5,10 @@ use once_cell::sync::Lazy;
 use std::path::PathBuf;
 
 pub static NPMRC: &'static str = ".npmrc";
-pub static RNMRC: &'static str = ".RNMrc";
+pub static TRVONRC: &'static str = ".trvonrc";
 
 pub static _NPMRC_PATH: Lazy<PathBuf> = Lazy::new(|| join_home_path(NPMRC).unwrap());
-pub static RNMRC_PATH: Lazy<PathBuf> = Lazy::new(|| join_home_path(RNMRC).unwrap());
+pub static TRVONRC_PATH: Lazy<PathBuf> = Lazy::new(|| join_home_path(TRVONRC).unwrap());
 
 pub const DEFAULT_REGISTRIES: Lazy<Vec<Registry>> = Lazy::new(|| {
   vec![

@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use super::Commander;
 use crate::{
-  constants::{NPMRC, RNMRC_PATH},
+  constants::{NPMRC, TRVONRC_PATH},
   helper::{get_current_registry, get_full_registries, is_have_registry, read_file_from_home},
 };
 use anyhow::Result;
@@ -49,7 +49,7 @@ impl Commander for Use {
             }
           }
 
-          if ini_content.write_to_file(RNMRC_PATH.as_path()).is_err() {
+          if ini_content.write_to_file(TRVONRC_PATH.as_path()).is_err() {
             return Err(UseError::IoError {
               r#type: "write".into(),
             });

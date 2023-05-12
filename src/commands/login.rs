@@ -3,7 +3,7 @@ use clap::{Args, Parser};
 use thiserror::Error;
 
 use crate::{
-  constants::RNMRC_PATH,
+  constants::TRVONRC_PATH,
   helper::{
     get_custom_registries_from_config, is_internal_registry, is_registry_not_found, print_success,
     write_custom_registries,
@@ -79,7 +79,7 @@ impl Commander for Login {
       (*registry).email = email
     }
 
-    if let Err(_) = write_custom_registries(&custom_registries, Some(RNMRC_PATH.as_path())) {
+    if let Err(_) = write_custom_registries(&custom_registries, Some(TRVONRC_PATH.as_path())) {
       return Err(LoginError::WriteCustomRegistriesError);
     } else {
       print_success(format!(

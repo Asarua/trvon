@@ -1,5 +1,5 @@
 use crate::{
-  constants::{DEFAULT_REGISTRIES, NPMRC, RNMRC, RNMRC_PATH},
+  constants::{DEFAULT_REGISTRIES, NPMRC, TRVONRC, TRVONRC_PATH},
   registry::Registry,
 };
 use anyhow::Result;
@@ -36,7 +36,7 @@ pub fn get_current_registry() -> Result<Registry> {
 }
 
 pub fn get_custom_registries_from_config() -> Result<Vec<Registry>> {
-  let custom_registries_content = read_file_from_home(PathBuf::from(RNMRC))?;
+  let custom_registries_content = read_file_from_home(PathBuf::from(TRVONRC))?;
   if let Ok(custom_registries) = serde_json::from_str::<Vec<Registry>>(&custom_registries_content) {
     Ok(custom_registries)
   } else {
@@ -84,7 +84,7 @@ pub fn write_custom_registries<P: AsRef<Path>>(
   let path = if let Some(path) = path {
     PathBuf::from(path.as_ref())
   } else {
-    RNMRC_PATH.clone()
+    TRVONRC_PATH.clone()
   };
   std::fs::write(path, content)?;
   Ok(())

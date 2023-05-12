@@ -1,7 +1,7 @@
 use super::Commander;
 use crate::{
   commands::r#use::Use,
-  constants::RNMRC_PATH,
+  constants::TRVONRC_PATH,
   helper::{
     get_current_registry, get_custom_registries_from_config, is_internal_registry,
     is_registry_not_found, print_success, write_custom_registries,
@@ -38,7 +38,7 @@ impl Commander for Del {
         self.name
       ));
 
-      if let Err(_) = write_custom_registries(&custom_registries, Some(RNMRC_PATH.as_path())) {
+      if let Err(_) = write_custom_registries(&custom_registries, Some(TRVONRC_PATH.as_path())) {
         return Err(DelError::CustomRegistriesWriteFail);
       } else {
         let current_registry = get_current_registry().unwrap();

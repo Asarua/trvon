@@ -1,11 +1,11 @@
 [package]
-name = "rnm"
+name = "trvon"
 version = "0.0.1"
 edition = "2021"
 description = "Rust NPM registry Manager"
-homepage = "https://github.com/Asarua/rnm"
-documentation = "https://github.com/Asarua/rnm"
-repository = "https://github.com/Asarua/rnm"
+homepage = "https://github.com/Asarua/trvon"
+documentation = "https://github.com/Asarua/trvon"
+repository = "https://github.com/Asarua/trvon"
 license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

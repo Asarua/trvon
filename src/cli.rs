@@ -54,7 +54,7 @@ impl Commands {
 }
 
 #[derive(Parser, Debug)]
-#[command(name = "rnm", version = env!("CARGO_PKG_VERSION"), bin_name = "rnm")]
+#[command(name = "trvon", version = env!("CARGO_PKG_VERSION"), bin_name = "trvon")]
 pub struct Cli {
   #[clap(subcommand)]
   pub subcmd: Commands,

@@ -503,23 +503,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "194d8e591e405d1eecf28819740abed6d719d1a2db87fc0bcdedee9a26d55560"
 
 [[package]]
-name = "rnm"
-version = "0.0.1"
-dependencies = [
- "anyhow",
- "base64",
- "clap",
- "colored",
- "once_cell",
- "rust-ini",
- "serde",
- "serde_ini",
- "serde_json",
- "thiserror",
- "webbrowser",
-]
-
-[[package]]
 name = "rust-ini"
 version = "0.18.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -662,6 +645,23 @@ name = "tinyvec_macros"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1f3ccbac311fea05f86f61904b462b55fb3df8837a366dfc601a0161d0532f20"
+
+[[package]]
+name = "trvon"
+version = "0.0.1"
+dependencies = [
+ "anyhow",
+ "base64",
+ "clap",
+ "colored",
+ "once_cell",
+ "rust-ini",
+ "serde",
+ "serde_ini",
+ "serde_json",
+ "thiserror",
+ "webbrowser",
+]
 
 [[package]]
 name = "unicode-bidi"

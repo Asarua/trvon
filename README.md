@@ -1,7 +1,7 @@
-RNM -- Rust NPM registry Manager
+TRVON -- Rust NPM registry Manager
 ===
 
-`rnm` can help you easy and fast switch between different npm registries,
+`trvon` can help you easy and fast switch between different npm registries,
 now include: `npm`, `cnpm`, `taobao`, `nj(nodejitsu)`.
 
 The rust version of [nrm](https://github.com/Pana/nrm).
@@ -18,18 +18,18 @@ Or you can configure it in your HOME directory's .yarnrc
 ### NPM
 
 ```
-$ npm install -g rnm
+$ npm install -g trvon
 ```
 
 ### Cargo
 
 ```
-$ cargo install rnm
+$ cargo install trvon
 ```
 
 ## Example
 ```
-$ rnm ls
+$ trvon ls
 
 * npm ---------- https://registry.npmjs.org/
   yarn --------- https://registry.yarnpkg.com/
@@ -41,7 +41,7 @@ $ rnm ls
 ```
 
 ```
-$ rnm use cnpm  //switch registry to cnpm
+$ trvon use cnpm  //switch registry to cnpm
 
     Registry has been set to: http://r.cnpmjs.org/
 
@@ -50,7 +50,7 @@ $ rnm use cnpm  //switch registry to cnpm
 ## Usage
 
 ```
-Usage: rnm [options] [command]
+Usage: trvon [options] [command]
 
   Commands:
 
@@ -119,5 +119,5 @@ When you are using a custom registry you will need to run the `set-hosted-repo` 
 MIT
 
 
-[npm-image]: https://img.shields.io/npm/v/rnm.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/rnm
+[npm-image]: https://img.shields.io/npm/v/trvon.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/trvon
