@@ -1,4 +1,4 @@
-TRVON -- The rust version of [nrm](https://github.com/Pana/nrm)
+Trvon -- The rust version of [nrm](https://github.com/Pana/nrm)
 ===
 
 `trvon` can help you easy and fast switch between different npm registries,
