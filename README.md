@@ -1,10 +1,8 @@
-TRVON -- Rust NPM registry Manager
+TRVON -- The rust version of [nrm](https://github.com/Pana/nrm)
 ===
 
 `trvon` can help you easy and fast switch between different npm registries,
 now include: `npm`, `cnpm`, `taobao`, `nj(nodejitsu)`.
-
-The rust version of [nrm](https://github.com/Pana/nrm).
 
 ## How to configure yarn to use private registry ?
 just add .yarnrc in your project’s directory and write there:
