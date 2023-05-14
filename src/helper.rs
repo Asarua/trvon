@@ -13,7 +13,17 @@ use std::{
 };
 
 pub fn join_home_path<S: AsRef<Path>>(path: S) -> Result<PathBuf> {
-  Ok(PathBuf::from(std::env::var("HOME")?).join(path))
+  let home_dir = if cfg!(windows) {
+    dirs::home_dir()
+  } else {
+    Some(PathBuf::from(std::env::var("HOME")?))
+  };
+
+  if let Some(home) = home_dir {
+    Ok(home.join(path))
+  } else {
+    panic!("Home dir found fail.")
+  }
 }
 
 pub fn read_file(path: PathBuf) -> Result<String> {
