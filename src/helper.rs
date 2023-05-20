@@ -10,16 +10,11 @@ use std::{
   fmt::Display,
   fs,
   path::{Path, PathBuf},
+  time::{SystemTime, UNIX_EPOCH},
 };
 
 pub fn join_home_path<S: AsRef<Path>>(path: S) -> Result<PathBuf> {
-  let home_dir = if cfg!(windows) {
-    dirs::home_dir()
-  } else {
-    Some(PathBuf::from(std::env::var("HOME")?))
-  };
-
-  if let Some(home) = home_dir {
+  if let Some(home) = dirs::home_dir() {
     Ok(home.join(path))
   } else {
     panic!("Home dir found fail.")
@@ -65,25 +60,25 @@ pub fn get_full_registries() -> Result<Vec<Registry>> {
   Ok(registries.into_iter().collect::<Vec<Registry>>())
 }
 
-pub fn is_have_registry(name: String) -> bool {
+pub fn is_have_registry(name: &String) -> bool {
   let full_registries = get_full_registries().unwrap_or_default();
   let have = full_registries
     .iter()
-    .any(|registry| registry.lowercase_equal(&name, None));
+    .any(|registry| registry.lowercase_equal(name, None));
   have
 }
 
-pub fn is_internal_registry(name: String) -> bool {
+pub fn is_internal_registry(name: &String) -> bool {
   DEFAULT_REGISTRIES
     .iter()
-    .any(|registry| registry.lowercase_equal(&name, None))
+    .any(|registry| registry.lowercase_equal(name, None))
 }
 
-pub fn is_registry_not_found(name: String) -> bool {
+pub fn is_registry_not_found(name: &String) -> bool {
   !get_full_registries()
     .unwrap_or_default()
     .iter()
-    .any(|registry| registry.lowercase_equal(&name, None))
+    .any(|registry| registry.lowercase_equal(name, None))
 }
 
 pub fn write_custom_registries<P: AsRef<Path>>(
@@ -115,4 +110,12 @@ where
 
 pub fn print_success<S: Display>(content: S) {
   println!("{}", format!("{}  {}", "Success".green(), content));
+}
+
+pub fn get_now_timestamp() -> u128 {
+  let timestamp = SystemTime::now()
+    .duration_since(UNIX_EPOCH)
+    .expect("Time went backwards")
+    .as_millis();
+  timestamp
 }

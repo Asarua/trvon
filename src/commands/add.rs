@@ -50,7 +50,7 @@ impl Commander for Add {
 
 #[derive(Debug, Error)]
 pub enum AddError {
-  #[error("The registry name or url is already included in the nrm registries. Please make sure that the name and url are unique.")]
+  #[error("The registry name or url is already included in the trvon registries. Please make sure that the name and url are unique.")]
   ExistRegistry,
   #[error("The custom registries file write fail.")]
   WriteCustomRegistriesError,

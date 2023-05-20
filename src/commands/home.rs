@@ -16,7 +16,7 @@ impl Commander for Home {
   type Error = HomeError;
 
   fn apply(self) -> anyhow::Result<(), Self::Error> {
-    if is_registry_not_found(self.name.clone()) {
+    if is_registry_not_found(&self.name) {
       return Err(HomeError::RegistryNotFound(self.name));
     }
 

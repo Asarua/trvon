@@ -15,9 +15,11 @@ Or you can configure it in your HOME directory's .yarnrc
 
 ### NPM
 
-```
+Not yet
+
+<!-- ```
 $ npm install -g trvon
-```
+``` -->
 
 ### Cargo
 
@@ -96,15 +98,6 @@ Usage: trvon [options] [command]
 
 * [verdaccio--A lightweight private npm proxy registry](https://verdaccio.org/)
 * [nrm -- NPM registry manager](https://github.com/Pana/nrm)
-
-## TODO
-
-- [ ] del_scope
-- [ ] rename
-- [ ] set_hosted_repo
-- [ ] set_scope
-- [ ] set
-- [ ] test
 
 
 ## Notice

@@ -2,6 +2,7 @@ extern crate serde;
 
 use ini::Ini;
 use serde::{Deserialize, Serialize};
+use std::collections::BTreeMap;
 
 use crate::commands::add::Add;
 use crate::helper::get_from_ini;
@@ -15,6 +16,8 @@ pub struct Registry {
   pub always_auth: bool,
   pub email: Option<String>,
   pub _auth: Option<String>,
+  pub repository: Option<String>,
+  pub attrs: Option<BTreeMap<String, Option<String>>>,
 }
 
 #[macro_export]
@@ -37,6 +40,8 @@ impl Registry {
       email: None,
       always_auth: false,
       _auth: None,
+      repository: None,
+      attrs: None,
     }
   }
 }
@@ -50,8 +55,11 @@ impl Registry {
       email,
       always_auth,
       _auth,
+      repository,
+      attrs,
     } = self;
     let mut ini_instance = Ini::new();
+
     ini_instance
       .with_section(None::<String>)
       .set("name", name)
@@ -59,7 +67,16 @@ impl Registry {
       .set("home", home.clone().unwrap_or_default())
       .set("email", email.clone().unwrap_or_default())
       .set("_auth", _auth.clone().unwrap_or_default())
-      .set("always-auth", always_auth.to_string());
+      .set("always-auth", always_auth.to_string())
+      .set("repository", repository.clone().unwrap_or_default());
+
+    if let Some(attrs) = attrs {
+      for (key, value) in attrs {
+        ini_instance
+          .with_section(None::<String>)
+          .set(key, value.clone().unwrap_or_default());
+      }
+    };
 
     ini_instance
   }

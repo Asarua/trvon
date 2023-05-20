@@ -19,11 +19,11 @@ impl Commander for Del {
   type Error = DelError;
 
   fn apply(self) -> anyhow::Result<(), Self::Error> {
-    if is_internal_registry(self.name.clone()) {
+    if is_internal_registry(&self.name) {
       return Err(DelError::InternalRegistry);
     }
 
-    if is_registry_not_found(self.name.clone()) {
+    if is_registry_not_found(&self.name) {
       return Err(DelError::RegistryNotFound(self.name));
     }
 
@@ -55,7 +55,7 @@ impl Commander for Del {
 
 #[derive(Debug, Error)]
 pub enum DelError {
-  #[error("You cannot delete the nrm internal registry.")]
+  #[error("You cannot delete the trvon internal registry.")]
   InternalRegistry,
   #[error("The registry '{0}' is not found.")]
   RegistryNotFound(String),

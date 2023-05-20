@@ -1,5 +1,3 @@
-extern crate anyhow;
-
 pub mod add;
 pub mod current;
 pub mod del;

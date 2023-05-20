@@ -23,11 +23,11 @@ impl Commander for Ls {
     println!("");
     registries.iter().for_each(|registry| {
       println!(
-        " {} {} {} {}",
+        "{} {} {} {}",
         if current_registry.lowercase_equal(&registry.name, None) {
           "*"
         } else {
-          ""
+          " "
         },
         registry.name,
         "-".repeat(max_length - registry.name.chars().count()),

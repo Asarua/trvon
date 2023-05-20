@@ -7,7 +7,7 @@ use std::path::PathBuf;
 pub static NPMRC: &'static str = ".npmrc";
 pub static TRVONRC: &'static str = ".trvonrc";
 
-pub static _NPMRC_PATH: Lazy<PathBuf> = Lazy::new(|| join_home_path(NPMRC).unwrap());
+pub static NPMRC_PATH: Lazy<PathBuf> = Lazy::new(|| join_home_path(NPMRC).unwrap());
 pub static TRVONRC_PATH: Lazy<PathBuf> = Lazy::new(|| join_home_path(TRVONRC).unwrap());
 
 pub const DEFAULT_REGISTRIES: Lazy<Vec<Registry>> = Lazy::new(|| {

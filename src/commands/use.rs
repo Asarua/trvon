@@ -2,8 +2,11 @@ use std::path::PathBuf;
 
 use super::Commander;
 use crate::{
-  constants::{NPMRC, TRVONRC_PATH},
-  helper::{get_current_registry, get_full_registries, is_have_registry, read_file_from_home},
+  constants::NPMRC,
+  helper::{
+    get_current_registry, get_full_registries, is_have_registry, join_home_path, print_success,
+    read_file_from_home,
+  },
 };
 use anyhow::Result;
 use clap::Parser;
@@ -21,16 +24,23 @@ impl Use {
   }
 }
 
+impl Use {
+  fn print_use_success(&self) {
+    print_success(format!("The registry has been changed to '{}'.", self.name));
+  }
+}
+
 impl Commander for Use {
   type Error = UseError;
 
   fn apply(self) -> Result<(), Self::Error> {
-    let name = self.name;
-    if !is_have_registry(name.clone()) {
+    let name = self.name.clone();
+    if !is_have_registry(&name) {
       return Err(Self::Error::RegistryNotFound(name));
     }
     let current_registry = get_current_registry().unwrap();
     if current_registry.lowercase_equal(&name, None) {
+      self.print_use_success();
       return Ok(());
     }
 
@@ -40,19 +50,26 @@ impl Commander for Use {
       .find(|registry| registry.lowercase_equal(&name, None))
     {
       if let Ok(current_npmrc_content_raw) = read_file_from_home(PathBuf::from(NPMRC)) {
-        if let Ok(current_npmrc_content) = Ini::load_from_file(current_npmrc_content_raw) {
-          let mut ini_content = registry_instance.into_ini();
+        if let Ok(current_npmrc_content) =
+          Ini::load_from_str(current_npmrc_content_raw.as_str()).as_mut()
+        {
+          let ini_content = registry_instance.into_ini();
 
-          for (prop_key, prop_value) in current_npmrc_content.iter() {
+          for (prop_key, prop_value) in ini_content.iter() {
             for (key, value) in prop_value.iter() {
-              ini_content.set_to(prop_key, key.into(), value.into())
+              (*current_npmrc_content).set_to(prop_key, key.into(), value.into())
             }
           }
 
-          if ini_content.write_to_file(TRVONRC_PATH.as_path()).is_err() {
+          if ini_content
+            .write_to_file(join_home_path(PathBuf::from(NPMRC)).unwrap())
+            .is_err()
+          {
             return Err(UseError::IoError {
               r#type: "write".into(),
             });
+          } else {
+            self.print_use_success()
           }
         } else {
           return Err(UseError::NpmrcParseError);

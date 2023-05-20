@@ -46,11 +46,11 @@ impl Commander for Login {
       password,
     } = args;
 
-    if is_internal_registry(name.clone()) {
+    if is_internal_registry(&name) {
       return Err(LoginError::InternalRegistry);
     }
 
-    if is_registry_not_found(name.clone()) {
+    if is_registry_not_found(&name) {
       return Err(LoginError::RegistryNotFound(name));
     }
 
@@ -93,7 +93,7 @@ impl Commander for Login {
 
 #[derive(Debug, Error)]
 pub enum LoginError {
-  #[error("You cannot delete the nrm internal registry.")]
+  #[error("You cannot set authorization information of the trvon internal registry.")]
   InternalRegistry,
   #[error("The registry '{0}' is not found.")]
   RegistryNotFound(String),
