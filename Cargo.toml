@@ -1,6 +1,6 @@
 [package]
 name = "trvon"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
 description = "Rust NPM registry Manager"
 homepage = "https://github.com/Asarua/trvon"
