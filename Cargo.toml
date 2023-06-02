@@ -24,3 +24,10 @@ serde_ini = "0.2.0"
 serde_json = "1.0.96"
 thiserror = { version = "1.0.40"}
 webbrowser = "0.8.9"
+
+[target.aarch64-apple-darwin]
+linker = "rust-lld"
+rustflags = ["-C", "link-arg=-L/usr/local/opt/openssl/lib" , "-C", "link-arg=-lssl", "-C", "link-arg=-lcrypto"]
+
+[target.x86_64-pc-windows-gnu]
+rustflags = ["-C", "target-feature=+crt-static"]

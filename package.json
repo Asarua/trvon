@@ -14,7 +14,7 @@
     "build-all": "node ./js/scripts/build-npm.js",
     "build-win32-x64": "node ./js/scripts/build-npm.js win32-x64",
     "build-darwin-x64": "node ./js/scripts/build-npm.js darwin-x64",
-    "build-darwin-arch64": "node ./js/scripts/build-npm.js darwin-arch64",
+    "build-darwin-arm64": "node ./js/scripts/build-npm.js darwin-arm64",
     "build-linux-x64": "node ./js/scripts/build-npm.js linux-x64"
   },
   "repository": {
