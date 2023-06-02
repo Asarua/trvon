@@ -1,0 +1,9 @@
+#!/bin/bash
+
+nrm ls
+nrm use npm
+nrm add test test test
+nrm use test
+nrm current -u
+nrm del test
+nrm ls

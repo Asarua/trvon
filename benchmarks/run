@@ -1,0 +1,31 @@
+#!/bin/bash
+
+BASE_DIR="$(dirname "$(realpath "$0")")"
+cd "$BASE_DIR" || exit 1
+
+mkdir results 2>/dev/null || :
+
+if [ ! -f "$BASE_DIR/../target/release/trvon" ]; then
+  echo "Can't access the release version of trvon.rs"
+  exit 1
+fi
+
+check_dependencies() {
+  if ! command -v "$1" >/dev/null 2>&1; then
+    echo "Can't access $1. Are you sure it is installed?"
+    echo "  if not, visit $2"
+    exit 1
+  fi
+}
+
+check_dependencies hyperfine https://github.com/sharkdp/hyperfine
+check_dependencies nrm https://github.com/Pana/nrm
+
+hyperfine \
+  --warmup=2 \
+  --min-runs=40 \
+  --time-unit=millisecond \
+  --export-json="./results/basic.json" \
+  --export-markdown="./results/basic.md" \
+  "bash basic/nrm" \
+  "bash basic/trvon"

@@ -1,10 +1,21 @@
 {
   "name": "trvon",
-  "version": "1.0.0",
-  "description": "TRVON -- The rust version of [nrm](https://github.com/Pana/nrm)",
+  "version": "0.0.1",
+  "description": "Trvon -- The rust version of nrm",
+  "packageManager": "pnpm@8.6.0",
   "main": "index.js",
+  "bin": {
+    "trvon": "./js/scripts/bin.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node ./js/scripts/check.js",
+    "benchmarks": "bash ./benchmarks/run",
+    "build-all": "node ./js/scripts/build-npm.js",
+    "build-win32-x64": "node ./js/scripts/build-npm.js win32-x64",
+    "build-darwin-x64": "node ./js/scripts/build-npm.js darwin-x64",
+    "build-darwin-arch64": "node ./js/scripts/build-npm.js darwin-arch64",
+    "build-linux-x64": "node ./js/scripts/build-npm.js linux-x64"
   },
   "repository": {
     "type": "git",
@@ -18,6 +29,19 @@
   },
   "homepage": "https://github.com/Asarua/trvon#readme",
   "files": [
-    "README.md"
-  ]
+    "README.md",
+    "js/scripts/bin.js",
+    "js/scripts/check.js",
+    "js/scripts/platform.js",
+    "js/scripts/common.js"
+  ],
+  "optionalDependencies": {
+    "@trvon/darwin-arm64": "0.0.1",
+    "@trvon/darwin-x64": "0.0.1",
+    "@trvon/linux-x64": "0.0.1",
+    "@trvon/win32-x64": "0.0.1"
+  },
+  "devDependencies": {
+    "chalk": "^4.1.2"
+  }
 }

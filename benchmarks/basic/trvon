@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd ..
+
+target/release/trvon ls
+target/release/trvon use npm
+target/release/trvon add test test test
+target/release/trvon use test
+target/release/trvon current -u
+target/release/trvon del test
+target/release/trvon ls
